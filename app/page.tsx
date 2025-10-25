@@ -35,12 +35,12 @@ export const metadata: Metadata = {
     title: '한국산업인재육성학원 | 대구 POWER BI 빅데이터 분석 교육',
     description:
       '대구 경산시 조영동 위치. POWER BI 기반 재무빅데이터 분석사 과정 운영. 취업률 95%, 정부지원금 최대 100% 지원. 6개월 과정으로 재무분석가, 데이터 분석가 취업 준비.',
-    url: 'https://kihd.ac.kr',
+    url: 'https://himzei.com',
     type: 'website',
     siteName: '한국산업인재육성학원',
     images: [
       {
-        url: 'https://kihd.ac.kr/images/bigdata.webp',
+        url: 'https://himzei.com/images/bigdata.webp',
         width: 1200,
         height: 630,
         alt: 'POWER BI 빅데이터 분석 교육 과정',
@@ -52,7 +52,7 @@ export const metadata: Metadata = {
     title: '한국산업인재육성학원 | 대구 POWER BI 빅데이터 분석 교육',
     description:
       '대구 경산시 조영동 위치. POWER BI 기반 재무빅데이터 분석사 과정 운영. 취업률 95%, 정부지원금 최대 100% 지원.',
-    images: ['https://kihd.ac.kr/images/bigdata.webp'],
+    images: ['https://himzei.com/images/bigdata.webp'],
   },
   robots: {
     index: true,

@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL('https://kihd.ac.kr'),
+  metadataBase: new URL('https://himzei.com'),
   alternates: {
     canonical: '/',
     types: {
@@ -52,7 +52,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'ko_KR',
-    url: 'https://kihd.ac.kr',
+    url: 'https://himzei.com',
     siteName: '한국산업인재육성학원',
     title: '한국산업인재육성학원 | 대구 회계·세무·컴퓨터학원',
     description:

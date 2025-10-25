@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://kihd.ac.kr';
+  const baseUrl = 'https://himzei.com';
   const currentDate = new Date().toISOString();
 
   return [

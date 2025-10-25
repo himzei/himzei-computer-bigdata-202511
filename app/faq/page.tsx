@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     title: '자주 묻는 질문 | 한국산업인재육성학원',
     description:
       '한국산업인재육성학원 POWER BI 빅데이터 분석 과정에 대한 자주 묻는 질문과 답변. 수강료, 수강기간, 취업률, 교육과정 등 궁금한 모든 것을 확인하세요.',
-    url: 'https://kihd.ac.kr/faq',
+    url: 'https://himzei.com/faq',
     type: 'website',
   },
   robots: {

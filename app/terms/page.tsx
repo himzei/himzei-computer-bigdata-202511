@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     title: '이용약관 | 한국산업인재육성학원',
     description:
       '한국산업인재육성학원 서비스 이용약관. 서비스 이용조건, 회원가입, 서비스 이용 및 제한에 관한 약관을 확인하세요.',
-    url: 'https://kihd.ac.kr/terms',
+    url: 'https://himzei.com/terms',
   },
   robots: {
     index: true,
@@ -41,7 +41,7 @@ export default function TermsPage() {
               '@type': 'ListItem',
               position: 2,
               name: '이용약관',
-              item: 'https://kihd.ac.kr/terms',
+              item: 'https://himzei.com/terms',
             },
           ],
         }}

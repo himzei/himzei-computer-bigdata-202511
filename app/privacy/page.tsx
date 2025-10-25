@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     title: '개인정보처리방침 | 한국산업인재육성학원',
     description:
       '한국산업인재육성학원 개인정보처리방침. 개인정보 수집, 이용, 보관, 파기에 관한 정책을 확인하세요.',
-    url: 'https://kihd.ac.kr/privacy',
+    url: 'https://himzei.com/privacy',
   },
   robots: {
     index: true,
@@ -41,7 +41,7 @@ export default function PrivacyPage() {
               '@type': 'ListItem',
               position: 2,
               name: '개인정보처리방침',
-              item: 'https://kihd.ac.kr/privacy',
+              item: 'https://himzei.com/privacy',
             },
           ],
         }}

@@ -9,7 +9,7 @@ export default function Footer() {
         <div className='flex flex-col gap-6 sm:gap-4'>
           {/* 로고 및 회사 정보 */}
           <div className='flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-6'>
-            <div className='flex items-center space-x-3'>
+            <div className='flex items-center space-x-2'>
               <Image
                 src='/images/logo.webp'
                 alt='한국산업인재육성학원'
@@ -17,7 +17,7 @@ export default function Footer() {
                 height={40}
                 className='object-contain flex-shrink-0'
               />
-              <div className='text-center sm:text-left'>
+              <div className='text-left'>
                 <h3 className='font-bold text-white text-lg sm:text-xl'>
                   한국산업인재육성학원
                 </h3>
@@ -28,34 +28,34 @@ export default function Footer() {
             </div>
           </div>
           {/* 개인정보처리방침 및 이용약관 */}
-          <div className='flex flex-wrap justify-center sm:justify-start gap-3 sm:gap-4'>
+          <div className='flex flex-wrap gap-2'>
             <Link
               href='/'
-              className='text-sm text-gray-300 hover:text-blue-400 transition-colors px-2 py-1 rounded hover:bg-white/5'
+              className='text-sm text-gray-300 hover:text-blue-400 transition-colors py-1 rounded hover:bg-white/5'
             >
               메인화면
             </Link>
             <Link
               href='/privacy'
-              className='text-sm text-gray-300 hover:text-blue-400 transition-colors px-2 py-1 rounded hover:bg-white/5'
+              className='text-sm text-gray-300 hover:text-blue-400 transition-colors py-1 rounded hover:bg-white/5'
             >
               개인정보처리방침
             </Link>
             <Link
               href='/terms'
-              className='text-sm text-gray-300 hover:text-blue-400 transition-colors px-2 py-1 rounded hover:bg-white/5'
+              className='text-sm text-gray-300 hover:text-blue-400 transition-colors py-1 rounded hover:bg-white/5'
             >
               이용약관
             </Link>
             <Link
               href='/faq'
-              className='text-sm text-gray-300 hover:text-blue-400 transition-colors px-2 py-1 rounded hover:bg-white/5'
+              className='text-sm text-gray-300 hover:text-blue-400 transition-colors py-1 rounded hover:bg-white/5'
             >
               FAQ
             </Link>
             <Link
               href='/site-map'
-              className='text-sm text-gray-300 hover:text-blue-400 transition-colors px-2 py-1 rounded hover:bg-white/5'
+              className='text-sm text-gray-300 hover:text-blue-400 transition-colors py-1 rounded hover:bg-white/5'
             >
               사이트맵
             </Link>

@@ -12,7 +12,7 @@ interface RSSItem {
 
 // RSS 피드 생성 함수
 function generateRSSFeed(items: RSSItem[]): string {
-  const baseUrl = 'https://kihd.ac.kr';
+  const baseUrl = 'https://himzei.com';
   const currentDate = new Date().toUTCString();
 
   const rssItems = items
@@ -47,8 +47,8 @@ function generateRSSFeed(items: RSSItem[]): string {
       <width>1200</width>
       <height>630</height>
     </image>
-    <managingEditor>info@kihd.ac.kr (한국산업인재육성학원)</managingEditor>
-    <webMaster>info@kihd.ac.kr (한국산업인재육성학원)</webMaster>
+    <managingEditor>info@himzei.com (한국산업인재육성학원)</managingEditor>
+    <webMaster>info@himzei.com (한국산업인재육성학원)</webMaster>
     <copyright>Copyright ${new Date().getFullYear()} 한국산업인재육성학원. All rights reserved.</copyright>
     <generator>Next.js RSS Generator</generator>
     <ttl>60</ttl>
@@ -156,7 +156,7 @@ export async function GET() {
   <channel>
     <title>한국산업인재육성학원</title>
     <description>RSS 피드를 불러오는 중 오류가 발생했습니다.</description>
-    <link>https://kihd.ac.kr</link>
+    <link>https://himzei.com</link>
     <language>ko-KR</language>
     <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
   </channel>
