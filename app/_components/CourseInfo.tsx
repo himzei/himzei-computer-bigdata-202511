@@ -18,7 +18,6 @@ import {
   Sparkles,
   Mail,
   AlertCircle,
-  TrendingUp,
 } from 'lucide-react';
 import Link from 'next/link';
 
@@ -76,7 +75,7 @@ export default function CourseInfo() {
 
   // 교육대상
   const targetAudience = [
-    '영남대학교 3·4학년',
+    '대학교 3·4학년',
     '졸업생, 휴학생',
     '지역실업자',
     '지역취준생 등',

@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import {
   CheckCircle2,
   Sparkles,
@@ -14,15 +14,85 @@ import {
   Database,
   Briefcase,
 } from 'lucide-react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+// GSAP ScrollTrigger 플러그인 등록
+gsap.registerPlugin(ScrollTrigger);
 
 export default function Curriculumn() {
   const [activeTab, setActiveTab] = useState(0);
+
+  // 커리큘럼 섹션 애니메이션을 위한 ref
+  const curriculumSectionsRef = useRef<(HTMLDivElement | null)[]>([]);
+
+  // CTA 섹션 애니메이션을 위한 ref
+  const ctaSectionRef = useRef<HTMLDivElement>(null);
 
   const tabs = [
     { id: 0, name: 'Power BI', icon: BarChart3 },
     { id: 1, name: '빅데이터 분석', icon: Database },
     { id: 2, name: '취업 지원', icon: Briefcase },
   ];
+
+  // GSAP 애니메이션 설정
+  useEffect(() => {
+    if (curriculumSectionsRef.current.length === 0) return;
+
+    // 커리큘럼 섹션들 초기 상태 설정 (화면 아래에서 시작)
+    gsap.set(curriculumSectionsRef.current, {
+      y: 100, // 아래에서 100px 떨어진 위치
+      opacity: 0, // 투명하게 시작
+    });
+
+    // 각 커리큘럼 섹션을 순차적으로 애니메이션
+    curriculumSectionsRef.current.forEach((section, index) => {
+      if (section) {
+        gsap.to(section, {
+          y: 0, // 원래 위치로 이동
+          opacity: 1, // 완전히 보이게
+          duration: 0.6, // 애니메이션 지속시간
+          ease: 'power2.out', // 부드러운 이징
+          delay: index * 0.2, // 각 섹션마다 0.2초씩 지연
+          scrollTrigger: {
+            trigger: section,
+            start: 'top 85%', // 요소가 화면의 85% 지점에 도달했을 때 시작
+            end: 'bottom 15%',
+            toggleActions: 'play none none reverse', // 스크롤 시 재생, 역방향 스크롤 시 역재생
+          },
+        });
+      }
+    });
+
+    // CTA 섹션 애니메이션 설정
+    if (ctaSectionRef.current) {
+      // CTA 섹션 초기 상태 (왼쪽에서 시작)
+      gsap.set(ctaSectionRef.current, {
+        x: -100, // 왼쪽에서 100px 떨어진 위치
+        opacity: 0, // 투명하게 시작
+      });
+
+      // CTA 섹션 애니메이션 (왼쪽에서 오른쪽으로)
+      gsap.to(ctaSectionRef.current, {
+        x: 0, // 원래 위치로 이동
+        opacity: 1, // 완전히 보이게
+        duration: 0.6, // 애니메이션 지속시간
+        ease: 'power2.out', // 부드러운 이징
+        scrollTrigger: {
+          trigger: ctaSectionRef.current,
+          start: 'top 85%', // 요소가 화면의 85% 지점에 도달했을 때 시작
+          end: 'bottom 15%',
+          toggleActions: 'play none none reverse', // 스크롤 시 재생, 역방향 스크롤 시 역재생
+        },
+      });
+    }
+
+    // 컴포넌트 언마운트 시 ScrollTrigger 정리
+    return () => {
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+    };
+  }, []);
+
   return (
     <section
       id='curriculum'
@@ -30,7 +100,12 @@ export default function Curriculumn() {
     >
       <div className='container mx-auto relative z-10 flex flex-col gap-12'>
         {/* Power BI 강조 섹션 */}
-        <div className='relative bg-gradient-to-br from-yellow-500/10 via-orange-500/10 to-red-500/10 backdrop-blur-sm border border-yellow-500/30 rounded-3xl p-12 overflow-hidden'>
+        <div
+          ref={el => {
+            curriculumSectionsRef.current[0] = el;
+          }}
+          className='relative bg-gradient-to-br from-yellow-500/10 via-orange-500/10 to-red-500/10 backdrop-blur-sm border border-yellow-500/30 rounded-3xl p-12 overflow-hidden'
+        >
           <div className='absolute top-0 right-0 w-64 h-64 bg-yellow-500/20 rounded-full blur-3xl' />
 
           <div className='relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center'>
@@ -110,7 +185,12 @@ export default function Curriculumn() {
         </div>
 
         {/* 컴퓨터활용능력 강조 섹션 */}
-        <div className='relative bg-gradient-to-br from-green-500/10 via-emerald-500/10 to-teal-500/10 backdrop-blur-sm border border-green-500/30 rounded-3xl p-12 overflow-hidden '>
+        <div
+          ref={el => {
+            curriculumSectionsRef.current[1] = el;
+          }}
+          className='relative bg-gradient-to-br from-green-500/10 via-emerald-500/10 to-teal-500/10 backdrop-blur-sm border border-green-500/30 rounded-3xl p-12 overflow-hidden '
+        >
           <div className='absolute top-0 right-0 w-64 h-64 bg-green-500/20 rounded-full blur-3xl' />
 
           <div className='relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center'>
@@ -188,7 +268,12 @@ export default function Curriculumn() {
         </div>
 
         {/* 전산회계·세무·TAT 강조 섹션 */}
-        <div className='relative bg-gradient-to-br from-purple-500/10 via-violet-500/10 to-indigo-500/10 backdrop-blur-sm border border-purple-500/30 rounded-3xl p-12 overflow-hidden '>
+        <div
+          ref={el => {
+            curriculumSectionsRef.current[2] = el;
+          }}
+          className='relative bg-gradient-to-br from-purple-500/10 via-violet-500/10 to-indigo-500/10 backdrop-blur-sm border border-purple-500/30 rounded-3xl p-12 overflow-hidden '
+        >
           <div className='absolute top-0 right-0 w-64 h-64 bg-purple-500/20 rounded-full blur-3xl' />
 
           <div className='relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center'>
@@ -266,7 +351,12 @@ export default function Curriculumn() {
         </div>
 
         {/* 빅데이터분석기사 강조 섹션 */}
-        <div className='relative bg-gradient-to-br from-red-500/10 via-pink-500/10 to-rose-500/10 backdrop-blur-sm border border-red-500/30 rounded-3xl p-12 overflow-hidden '>
+        <div
+          ref={el => {
+            curriculumSectionsRef.current[3] = el;
+          }}
+          className='relative bg-gradient-to-br from-red-500/10 via-pink-500/10 to-rose-500/10 backdrop-blur-sm border border-red-500/30 rounded-3xl p-12 overflow-hidden '
+        >
           <div className='absolute top-0 right-0 w-64 h-64 bg-red-500/20 rounded-full blur-3xl' />
 
           <div className='relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center'>
@@ -345,7 +435,10 @@ export default function Curriculumn() {
 
         {/* CTA 섹션 */}
         <div className='text-center'>
-          <div className='inline-block bg-gradient-to-r from-blue-500/20 to-purple-500/20 backdrop-blur-sm border border-blue-500/30 rounded-2xl p-12'>
+          <div
+            ref={ctaSectionRef}
+            className='inline-block bg-gradient-to-r from-blue-500/20 to-purple-500/20 backdrop-blur-sm border border-blue-500/30 rounded-2xl p-12'
+          >
             <GraduationCap className='w-16 h-16 text-blue-400 mx-auto mb-6' />
 
             <h3 className='text-3xl font-bold text-white mb-4'>

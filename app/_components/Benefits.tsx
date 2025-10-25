@@ -1,7 +1,7 @@
 // components/BenefitsSection.tsx
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import {
   DollarSign,
   Gift,
@@ -12,7 +12,6 @@ import {
   CheckCircle2,
   Sparkles,
   TrendingUp,
-  Calendar,
   CreditCard,
   GraduationCap,
   Building2,
@@ -24,9 +23,23 @@ import {
   Star,
 } from 'lucide-react';
 import Link from 'next/link';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+// GSAP ScrollTrigger 플러그인 등록
+gsap.registerPlugin(ScrollTrigger);
 
 export default function Benefits() {
   const [activeCard, setActiveCard] = useState<number | null>(null);
+
+  // 총 혜택 금액 강조 div 애니메이션을 위한 ref
+  const totalBenefitsRef = useRef<HTMLDivElement>(null);
+
+  // 메인 혜택 카드들 애니메이션을 위한 ref
+  const mainBenefitsCardsRef = useRef<(HTMLDivElement | null)[]>([]);
+
+  // 추가 혜택 카드들 애니메이션을 위한 ref
+  const additionalBenefitsCardsRef = useRef<(HTMLDivElement | null)[]>([]);
 
   // 메인 혜택 (국비지원)
   const mainBenefits = [
@@ -140,6 +153,124 @@ export default function Benefits() {
     },
   ];
 
+  // GSAP 애니메이션 설정
+  useEffect(() => {
+    if (!totalBenefitsRef.current) return;
+
+    // 총 혜택 금액 강조 div의 확대-축소-원래 크기 애니메이션
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: totalBenefitsRef.current,
+        start: 'top 80%', // 요소가 화면의 80% 지점에 도달했을 때 시작
+        end: 'bottom 20%',
+        toggleActions: 'play none none reverse', // 스크롤 시 재생, 역방향 스크롤 시 역재생
+      },
+    });
+
+    // 애니메이션 시퀀스: 확대 → 축소 → 원래 크기
+    tl.to(totalBenefitsRef.current, {
+      scale: 1.1, // 10% 확대
+      duration: 0.3, // 0.8초 동안 확대
+      ease: 'power2.out',
+    })
+      .to(totalBenefitsRef.current, {
+        scale: 0.95, // 5% 축소
+        duration: 0.3, // 0.6초 동안 축소
+        ease: 'power2.inOut',
+      })
+      .to(totalBenefitsRef.current, {
+        scale: 1, // 원래 크기로 복원
+        duration: 0.3, // 0.8초 동안 원래 크기로
+        ease: 'power2.out',
+      });
+
+    // 메인 혜택 카드들 애니메이션 설정
+    if (mainBenefitsCardsRef.current.length > 0) {
+      // 메인 혜택 카드들 초기 상태 (오른쪽에서 시작)
+      gsap.set(mainBenefitsCardsRef.current, {
+        x: 100, // 오른쪽에서 100px 떨어진 위치
+        opacity: 0, // 투명하게 시작
+      });
+
+      // 각 메인 혜택 카드를 순차적으로 애니메이션 (오른쪽에서 왼쪽으로)
+      mainBenefitsCardsRef.current.forEach((card, index) => {
+        if (card) {
+          gsap.to(card, {
+            x: 0, // 원래 위치로 이동
+            opacity: 1, // 완전히 보이게
+            duration: 0.6, // 애니메이션 지속시간
+            ease: 'power2.out', // 부드러운 이징
+            delay: index * 0.15, // 각 카드마다 0.15초씩 지연
+            scrollTrigger: {
+              trigger: card,
+              start: 'top 85%', // 요소가 화면의 85% 지점에 도달했을 때 시작
+              end: 'bottom 15%',
+              toggleActions: 'play none none reverse', // 스크롤 시 재생, 역방향 스크롤 시 역재생
+            },
+          });
+        }
+      });
+    }
+
+    // 추가 혜택 카드들 애니메이션 설정
+    if (additionalBenefitsCardsRef.current.length > 0) {
+      // 위쪽 4개 카드 (0-3번 인덱스) 초기 상태 (왼쪽에서 시작)
+      gsap.set(additionalBenefitsCardsRef.current.slice(0, 4), {
+        x: -100, // 왼쪽에서 100px 떨어진 위치
+        opacity: 0, // 투명하게 시작
+      });
+
+      // 아래쪽 4개 카드 (4-7번 인덱스) 초기 상태 (오른쪽에서 시작)
+      gsap.set(additionalBenefitsCardsRef.current.slice(4, 8), {
+        x: 100, // 오른쪽에서 100px 떨어진 위치
+        opacity: 0, // 투명하게 시작
+      });
+
+      // 위쪽 4개 카드 애니메이션 (왼쪽에서 오른쪽으로)
+      additionalBenefitsCardsRef.current.slice(0, 4).forEach((card, index) => {
+        if (card) {
+          gsap.to(card, {
+            x: 0, // 원래 위치로 이동
+            opacity: 1, // 완전히 보이게
+            duration: 0.6, // 애니메이션 지속시간
+            ease: 'power2.out', // 부드러운 이징
+            delay: index * 0.1, // 각 카드마다 0.1초씩 지연
+            scrollTrigger: {
+              trigger: card,
+              start: 'top 85%', // 요소가 화면의 85% 지점에 도달했을 때 시작
+              end: 'bottom 15%',
+              toggleActions: 'play none none reverse', // 스크롤 시 재생, 역방향 스크롤 시 역재생
+            },
+          });
+        }
+      });
+
+      // 아래쪽 4개 카드 애니메이션 (오른쪽에서 왼쪽으로)
+      additionalBenefitsCardsRef.current.slice(4, 8).forEach((card, index) => {
+        if (card) {
+          gsap.to(card, {
+            x: 0, // 원래 위치로 이동
+            opacity: 1, // 완전히 보이게
+            duration: 0.6, // 애니메이션 지속시간
+            ease: 'power2.out', // 부드러운 이징
+            delay: index * 0.1, // 각 카드마다 0.1초씩 지연
+            scrollTrigger: {
+              trigger: card,
+              start: 'top 85%', // 요소가 화면의 85% 지점에 도달했을 때 시작
+              end: 'bottom 15%',
+              toggleActions: 'play none none reverse', // 스크롤 시 재생, 역방향 스크롤 시 역재생
+            },
+          });
+        }
+      });
+    }
+
+    // 컴포넌트 언마운트 시 ScrollTrigger 정리
+    return () => {
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+    };
+  }, []);
+
   return (
     <section id='benefits' className='relative py-20 overflow-hidden'>
       <div className='container mx-auto px-4 relative z-10'>
@@ -171,7 +302,10 @@ export default function Benefits() {
 
         {/* 총 혜택 금액 강조 */}
         <div className='mb-16 relative'>
-          <div className='max-w-4xl mx-auto bg-gradient-to-r from-green-600 via-emerald-600 to-cyan-600 rounded-3xl p-1'>
+          <div
+            ref={totalBenefitsRef}
+            className='max-w-4xl mx-auto bg-gradient-to-r from-green-600 via-emerald-600 to-cyan-600 rounded-3xl p-1'
+          >
             <div className='bg-gradient-to-br from-gray-900 to-black rounded-3xl p-8 md:p-12'>
               <div className='text-center'>
                 <div className='inline-flex items-center space-x-2 bg-yellow-500/20 backdrop-blur-sm border border-yellow-500/30 rounded-full px-4 py-2 mb-6'>
@@ -213,6 +347,9 @@ export default function Benefits() {
           {mainBenefits.map((benefit, index) => (
             <div
               key={index}
+              ref={el => {
+                mainBenefitsCardsRef.current[index] = el;
+              }}
               onMouseEnter={() => setActiveCard(index)}
               onMouseLeave={() => setActiveCard(null)}
               className='group relative bg-white/5 backdrop-blur-sm border border-white/10 rounded-3xl p-8 hover:bg-white/10 transition-all duration-300 hover:scale-105 cursor-pointer'
@@ -290,6 +427,9 @@ export default function Benefits() {
             {additionalBenefits.map((benefit, index) => (
               <div
                 key={index}
+                ref={el => {
+                  additionalBenefitsCardsRef.current[index] = el;
+                }}
                 className='group bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 hover:bg-white/10 hover:border-blue-500/50 transition-all duration-300'
               >
                 <div className='w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500/20 to-purple-500/20 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform'>
