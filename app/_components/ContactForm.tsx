@@ -26,11 +26,80 @@ export default function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
 
+  // 에러 상태 관리
+  const [errors, setErrors] = useState({
+    name: '',
+    phone: '',
+    email: '',
+    course: '',
+  });
+
   const courses = [
     'POWER BI 기반의 재무빅데이터 분석사 사무관리원 양성과정[2025년 10월 31일 개강]',
     '컴퓨터활용능력 1급 과정[2025년 12월 개강예정]',
     '기타 문의',
   ];
+
+  // 유효성 검사 함수들
+  const validateName = (name: string): string => {
+    if (!name.trim()) return '이름을 입력해주세요.';
+    if (name.trim().length < 2) return '이름은 2글자 이상 입력해주세요.';
+    if (!/^[가-힣a-zA-Z\s]+$/.test(name.trim()))
+      return '이름은 한글 또는 영문만 입력 가능합니다.';
+    return '';
+  };
+
+  const validatePhone = (phone: string): string => {
+    if (!phone.trim()) return '연락처를 입력해주세요.';
+    const phoneRegex = /^010-\d{4}-\d{4}$/;
+    if (!phoneRegex.test(phone.trim()))
+      return '연락처는 010-0000-0000 형식으로 입력해주세요.';
+    return '';
+  };
+
+  const validateEmail = (email: string): string => {
+    if (!email.trim()) return ''; // 이메일은 선택사항
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email.trim()))
+      return '올바른 이메일 형식을 입력해주세요.';
+    return '';
+  };
+
+  const validateCourse = (course: string): string => {
+    if (!course.trim()) return '상담 희망 과정을 선택해주세요.';
+    return '';
+  };
+
+  // 개별 필드 유효성 검사
+  const validateField = (name: string, value: string): string => {
+    switch (name) {
+      case 'name':
+        return validateName(value);
+      case 'phone':
+        return validatePhone(value);
+      case 'email':
+        return validateEmail(value);
+      case 'course':
+        return validateCourse(value);
+      default:
+        return '';
+    }
+  };
+
+  // 전체 폼 유효성 검사
+  const validateForm = (): boolean => {
+    const newErrors = {
+      name: validateName(formData.name),
+      phone: validatePhone(formData.phone),
+      email: validateEmail(formData.email),
+      course: validateCourse(formData.course),
+    };
+
+    setErrors(newErrors);
+
+    // 모든 에러가 비어있으면 유효함
+    return Object.values(newErrors).every(error => error === '');
+  };
 
   const handleChange = (
     e: React.ChangeEvent<
@@ -38,34 +107,78 @@ export default function ContactForm() {
     >
   ) => {
     const { name, value } = e.target;
+
+    // 폼 데이터 업데이트
     setFormData(prev => ({
       ...prev,
       [name]: value,
+    }));
+
+    // 실시간 유효성 검사
+    const errorMessage = validateField(name, value);
+    setErrors(prev => ({
+      ...prev,
+      [name]: errorMessage,
     }));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // 폼 유효성 검사
+    if (!validateForm()) {
+      return; // 유효하지 않으면 제출하지 않음
+    }
+
     setIsSubmitting(true);
 
-    // 실제 API 호출 시뮬레이션
-    setTimeout(() => {
-      console.log('Form submitted:', formData);
-      setIsSubmitting(false);
-      setIsSuccess(true);
+    try {
+      // 실제 API 호출
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
 
-      // 3초 후 폼 초기화
-      setTimeout(() => {
-        setIsSuccess(false);
-        setFormData({
-          name: '',
-          phone: '',
-          email: '',
-          course: '',
-          message: '',
-        });
-      }, 3000);
-    }, 1500);
+      const result = await response.json();
+
+      if (response.ok) {
+        // 성공 시
+        setIsSuccess(true);
+        console.log('이메일 전송 성공:', result.message);
+
+        // 3초 후 폼 초기화
+        setTimeout(() => {
+          setIsSuccess(false);
+          setFormData({
+            name: '',
+            phone: '',
+            email: '',
+            course: '',
+            message: '',
+          });
+          // 에러 상태도 초기화
+          setErrors({
+            name: '',
+            phone: '',
+            email: '',
+            course: '',
+          });
+        }, 3000);
+      } else {
+        // 실패 시
+        console.error('이메일 전송 실패:', result.error);
+        alert('상담 신청 중 오류가 발생했습니다. 다시 시도해주세요.');
+      }
+    } catch (error) {
+      // 네트워크 오류 등
+      console.error('네트워크 오류:', error);
+      alert('네트워크 오류가 발생했습니다. 인터넷 연결을 확인해주세요.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -129,8 +242,18 @@ export default function ContactForm() {
                     onChange={handleChange}
                     required
                     placeholder='홍길동'
-                    className='w-full bg-white/5 backdrop-blur-sm border border-white/20 rounded-xl px-5 py-4 text-white placeholder-gray-500 focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/50 transition-all'
+                    className={`w-full bg-white/5 backdrop-blur-sm border rounded-xl px-5 py-4 text-white placeholder-gray-500 focus:outline-none focus:ring-2 transition-all ${
+                      errors.name
+                        ? 'border-red-500 focus:border-red-500 focus:ring-red-500/50'
+                        : 'border-white/20 focus:border-purple-500 focus:ring-purple-500/50'
+                    }`}
                   />
+                  {errors.name && (
+                    <p className='text-red-400 text-sm mt-2 flex items-center space-x-1'>
+                      <span className='text-red-500'>⚠</span>
+                      <span>{errors.name}</span>
+                    </p>
+                  )}
                 </div>
 
                 {/* 연락처 */}
@@ -151,8 +274,18 @@ export default function ContactForm() {
                     required
                     placeholder='010-1234-5678'
                     pattern='[0-9]{3}-[0-9]{4}-[0-9]{4}'
-                    className='w-full bg-white/5 backdrop-blur-sm border border-white/20 rounded-xl px-5 py-4 text-white placeholder-gray-500 focus:outline-none focus:border-green-500 focus:ring-2 focus:ring-green-500/50 transition-all'
+                    className={`w-full bg-white/5 backdrop-blur-sm border rounded-xl px-5 py-4 text-white placeholder-gray-500 focus:outline-none focus:ring-2 transition-all ${
+                      errors.phone
+                        ? 'border-red-500 focus:border-red-500 focus:ring-red-500/50'
+                        : 'border-white/20 focus:border-green-500 focus:ring-green-500/50'
+                    }`}
                   />
+                  {errors.phone && (
+                    <p className='text-red-400 text-sm mt-2 flex items-center space-x-1'>
+                      <span className='text-red-500'>⚠</span>
+                      <span>{errors.phone}</span>
+                    </p>
+                  )}
                 </div>
 
                 {/* 이메일 */}
@@ -171,8 +304,18 @@ export default function ContactForm() {
                     value={formData.email}
                     onChange={handleChange}
                     placeholder='example@email.com'
-                    className='w-full bg-white/5 backdrop-blur-sm border border-white/20 rounded-xl px-5 py-4 text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/50 transition-all'
+                    className={`w-full bg-white/5 backdrop-blur-sm border rounded-xl px-5 py-4 text-white placeholder-gray-500 focus:outline-none focus:ring-2 transition-all ${
+                      errors.email
+                        ? 'border-red-500 focus:border-red-500 focus:ring-red-500/50'
+                        : 'border-white/20 focus:border-blue-500 focus:ring-blue-500/50'
+                    }`}
                   />
+                  {errors.email && (
+                    <p className='text-red-400 text-sm mt-2 flex items-center space-x-1'>
+                      <span className='text-red-500'>⚠</span>
+                      <span>{errors.email}</span>
+                    </p>
+                  )}
                 </div>
 
                 {/* 과정 선택 */}
@@ -190,7 +333,11 @@ export default function ContactForm() {
                     value={formData.course}
                     onChange={handleChange}
                     required
-                    className='w-full bg-white/5 backdrop-blur-sm border border-white/20 rounded-xl px-5 py-4 text-white focus:outline-none focus:border-yellow-500 focus:ring-2 focus:ring-yellow-500/50 transition-all appearance-none cursor-pointer'
+                    className={`w-full bg-white/5 backdrop-blur-sm border rounded-xl px-5 py-4 text-white focus:outline-none focus:ring-2 transition-all appearance-none cursor-pointer ${
+                      errors.course
+                        ? 'border-red-500 focus:border-red-500 focus:ring-red-500/50'
+                        : 'border-white/20 focus:border-yellow-500 focus:ring-yellow-500/50'
+                    }`}
                     style={{
                       backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='white'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E")`,
                       backgroundRepeat: 'no-repeat',
@@ -212,6 +359,12 @@ export default function ContactForm() {
                       </option>
                     ))}
                   </select>
+                  {errors.course && (
+                    <p className='text-red-400 text-sm mt-2 flex items-center space-x-1'>
+                      <span className='text-red-500'>⚠</span>
+                      <span>{errors.course}</span>
+                    </p>
+                  )}
                 </div>
 
                 {/* 문의사항 */}

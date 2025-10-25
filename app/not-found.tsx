@@ -1,16 +1,7 @@
-import Link from 'next/link';
-import { Metadata } from 'next';
-import { Home, ArrowLeft, Search, Map } from 'lucide-react';
+'use client';
 
-export const metadata: Metadata = {
-  title: '페이지를 찾을 수 없습니다 | 한국산업인재육성학원',
-  description:
-    '요청하신 페이지를 찾을 수 없습니다. 한국산업인재육성학원 홈페이지로 돌아가시거나 사이트맵을 확인해보세요.',
-  robots: {
-    index: false, // 404 페이지는 검색엔진에 색인되지 않도록 설정
-    follow: false,
-  },
-};
+import Link from 'next/link';
+import { Home, ArrowLeft, Search, Map } from 'lucide-react';
 
 export default function NotFound() {
   return (
