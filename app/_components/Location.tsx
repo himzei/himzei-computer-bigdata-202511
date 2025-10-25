@@ -14,8 +14,7 @@ import Link from 'next/link';
 
 export default function Location() {
   const address = {
-    main: '경상북도 경산시 대학로 280',
-    detail: '(하양읍, 영남대학교)',
+    main: '경상북도 경산시 조영길 18-18(조영동)',
     zipCode: '38541',
   };
 
@@ -51,10 +50,7 @@ export default function Location() {
   ];
 
   return (
-    <section
-      id='location'
-      className='relative py-20 bg-gradient-to-b from-black via-gray-900 to-black overflow-hidden'
-    >
+    <section id='location' className='relative py-20 overflow-hidden'>
       {/* 배경 장식 */}
       <div className='absolute top-0 left-0 w-96 h-96 bg-green-500/10 rounded-full blur-3xl' />
       <div className='absolute bottom-0 right-0 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl' />
@@ -90,7 +86,7 @@ export default function Location() {
                   한국산업인재육성학원
                 </h3>
                 <p className='text-gray-300 text-lg mb-1'>{address.main}</p>
-                <p className='text-gray-400'>{address.detail}</p>
+
                 <p className='text-gray-500 text-sm mt-1'>
                   우편번호: {address.zipCode}
                 </p>
@@ -125,7 +121,7 @@ export default function Location() {
             <div className='relative w-full h-[400px] md:h-[500px] rounded-2xl overflow-hidden'>
               {/* 네이버 지도 iframe */}
               <iframe
-                src='https://map.naver.com/p/entry/place/11728055?c=15.00,0,0,0,dh&placePath=%2Fhome%3Fentry=plt'
+                src='https://naver.me/GxLUHyKV'
                 width='100%'
                 height='100%'
                 style={{ border: 0 }}

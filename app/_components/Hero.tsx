@@ -4,20 +4,31 @@ import { useState, useEffect } from 'react';
 import { ChevronDown, Sparkles } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { calculateCountdown, DEFAULT_TARGET_DATE } from '@/lib/countdown';
+import {
+  calculateCountdown,
+  getInitialCountdown,
+  DEFAULT_TARGET_DATE,
+} from '@/lib/countdown';
 
 export default function Hero() {
   const [isVisible, setIsVisible] = useState(false);
+  // hydration 오류 방지를 위해 초기값은 일관된 값으로 설정
   const [countdown, setCountdown] = useState(
-    calculateCountdown(DEFAULT_TARGET_DATE)
+    getInitialCountdown(DEFAULT_TARGET_DATE)
   );
+  const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
     setIsVisible(true);
   }, []);
 
-  // 실시간 카운트다운 업데이트
+  // 클라이언트에서 hydration이 완료된 후에만 실시간 업데이트 시작
   useEffect(() => {
+    setIsClient(true);
+
+    // 첫 번째 업데이트는 즉시 실행 (정확한 시간으로)
+    setCountdown(calculateCountdown(DEFAULT_TARGET_DATE));
+
     const timer = setInterval(() => {
       setCountdown(calculateCountdown(DEFAULT_TARGET_DATE));
     }, 1000);

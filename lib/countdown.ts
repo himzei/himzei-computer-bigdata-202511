@@ -13,8 +13,55 @@ export interface CountdownResult {
 }
 
 /**
+ * 서버와 클라이언트에서 일관된 초기 카운트다운 값을 제공합니다.
+ * hydration 오류를 방지하기 위해 초기 렌더링 시에는 seconds를 0으로 설정합니다.
+ * @param targetDate 목표 날짜 (기본값: 2025년 11월 3일)
+ * @returns CountdownResult 객체
+ */
+export function getInitialCountdown(
+  targetDate: Date = new Date('2025-11-03')
+): CountdownResult {
+  const now = new Date();
+  const timeDiff = targetDate.getTime() - now.getTime();
+
+  // 시간이 지났는지 확인
+  const isExpired = timeDiff <= 0;
+
+  if (isExpired) {
+    return {
+      days: 0,
+      hours: 0,
+      minutes: 0,
+      seconds: 0,
+      isExpired: true,
+      displayText: 'D-Day',
+    };
+  }
+
+  // 남은 시간 계산 (초는 0으로 고정하여 hydration 오류 방지)
+  const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+  const hours = Math.floor(
+    (timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+  );
+  const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = 0; // hydration 오류 방지를 위해 초기값은 0으로 설정
+
+  // 표시 텍스트 생성 - 초기값에서는 초를 제외
+  const displayText = `${days.toString()}일 ${hours.toString()}시간 ${minutes.toString()}분`;
+
+  return {
+    days,
+    hours,
+    minutes,
+    seconds,
+    isExpired,
+    displayText,
+  };
+}
+
+/**
  * 목표 날짜까지의 남은 시간을 계산합니다.
- * @param targetDate 목표 날짜 (기본값: 2024년 11월 3일)
+ * @param targetDate 목표 날짜 (기본값: 2025년 11월 3일)
  * @returns CountdownResult 객체
  */
 export function calculateCountdown(

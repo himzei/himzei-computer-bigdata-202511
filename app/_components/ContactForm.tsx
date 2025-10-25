@@ -27,10 +27,8 @@ export default function ContactForm() {
   const [isSuccess, setIsSuccess] = useState(false);
 
   const courses = [
-    '재무빅데이터 분석사 자문관리업 양성과정',
-    'Power BI 빅데이터 분석가 과정',
-    '컴퓨터활용능력 1급 과정',
-    '전산회계/세무 자격증 과정',
+    'POWER BI 기반의 재무빅데이터 분석사 사무관리원 양성과정[2025년 10월 31일 개강]',
+    '컴퓨터활용능력 1급 과정[2025년 12월 개강예정]',
     '기타 문의',
   ];
 
@@ -71,10 +69,7 @@ export default function ContactForm() {
   };
 
   return (
-    <section
-      id='contact'
-      className='relative py-20 bg-gradient-to-b from-black via-gray-900 to-black overflow-hidden'
-    >
+    <section id='contact' className='relative py-20 overflow-hidden'>
       {/* 배경 장식 */}
       <div className='absolute top-0 right-0 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl' />
       <div className='absolute bottom-0 left-0 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl' />
@@ -158,9 +153,6 @@ export default function ContactForm() {
                     pattern='[0-9]{3}-[0-9]{4}-[0-9]{4}'
                     className='w-full bg-white/5 backdrop-blur-sm border border-white/20 rounded-xl px-5 py-4 text-white placeholder-gray-500 focus:outline-none focus:border-green-500 focus:ring-2 focus:ring-green-500/50 transition-all'
                   />
-                  <p className='text-gray-500 text-sm mt-2'>
-                    * 형식: 010-1234-5678
-                  </p>
                 </div>
 
                 {/* 이메일 */}

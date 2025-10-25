@@ -4,6 +4,7 @@ import './globals.css';
 import { Noto_Sans_KR } from 'next/font/google';
 import Header from '@/components/layouts/Header';
 import Footer from '@/components/layouts/Footer';
+import ScrollToTop from '@/components/ui/ScrollToTop';
 
 const notoSansKr = Noto_Sans_KR({
   weight: ['500'],
@@ -11,9 +12,75 @@ const notoSansKr = Noto_Sans_KR({
 });
 
 export const metadata: Metadata = {
-  title: '한국산업인재육성학원',
+  title: {
+    default: '한국산업인재육성학원 | 대구 회계·세무·컴퓨터학원',
+    template: '%s | 한국산업인재육성학원',
+  },
   description:
-    '대구 회계·세무·컴퓨터학원 POWER BI 기반의 재무빅데이터 분석사 사무관리원 양성과정 안내 사이트',
+    '대구 최고의 회계·세무·컴퓨터학원. POWER BI 기반 재무빅데이터 분석사, 사무관리원 양성과정. 실무 중심 교육으로 취업률 95% 달성. 경산시 조영동 소재.',
+  keywords: [
+    '대구 학원',
+    '회계학원',
+    '세무학원',
+    '컴퓨터학원',
+    'POWER BI',
+    '재무빅데이터',
+    '빅데이터 분석사',
+    '사무관리원',
+    '취업교육',
+    '경산 학원',
+    '한국산업인재육성학원',
+  ],
+  authors: [{ name: '한국산업인재육성학원' }],
+  creator: '한국산업인재육성학원',
+  publisher: '한국산업인재육성학원',
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  metadataBase: new URL('https://kihd.ac.kr'),
+  alternates: {
+    canonical: '/',
+  },
+  openGraph: {
+    type: 'website',
+    locale: 'ko_KR',
+    url: 'https://kihd.ac.kr',
+    siteName: '한국산업인재육성학원',
+    title: '한국산업인재육성학원 | 대구 회계·세무·컴퓨터학원',
+    description:
+      '대구 최고의 회계·세무·컴퓨터학원. POWER BI 기반 재무빅데이터 분석사, 사무관리원 양성과정. 실무 중심 교육으로 취업률 95% 달성.',
+    images: [
+      {
+        url: '/images/logo.png',
+        width: 1200,
+        height: 630,
+        alt: '한국산업인재육성학원 로고',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: '한국산업인재육성학원 | 대구 회계·세무·컴퓨터학원',
+    description:
+      '대구 최고의 회계·세무·컴퓨터학원. POWER BI 기반 재무빅데이터 분석사, 사무관리원 양성과정.',
+    images: ['/images/logo.png'],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  verification: {
+    google: 'your-google-verification-code', // Google Search Console에서 발급받은 코드로 교체 필요
+  },
 };
 
 export default function RootLayout({
@@ -22,7 +89,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang='en' className='scroll-smooth' data-scroll-behavior='smooth'>
+    <html lang='ko' className='scroll-smooth' data-scroll-behavior='smooth'>
       <body
         className={notoSansKr.className}
         style={{
@@ -51,6 +118,9 @@ export default function RootLayout({
           <main className='flex-1'>{children}</main>
           <Footer />
         </div>
+
+        {/* 맨 위로 이동 버튼 */}
+        <ScrollToTop />
       </body>
     </html>
   );

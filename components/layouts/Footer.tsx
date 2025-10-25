@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 export default function Footer() {
   return (
-    <footer className=' backdrop-blur-sm border-t border-white/20'>
+    <footer className='backdrop-blur-sm border-t border-white/20'>
       <div className='container mx-auto px-4 py-8'>
         {/* 메인 Footer 콘텐츠 */}
         <div className='flex flex-col gap-4'>
@@ -28,7 +28,7 @@ export default function Footer() {
           {/* 개인정보처리방침 및 이용약관 */}
           <div className='flex space-x-4 px-.5'>
             <Link
-              href='/privacy'
+              href='/'
               className='text-sm text-gray-300 hover:text-blue-400 transition-colors'
             >
               메인화면
@@ -46,7 +46,13 @@ export default function Footer() {
               이용약관
             </Link>
             <Link
-              href='/terms'
+              href='/faq'
+              className='text-sm text-gray-300 hover:text-blue-400 transition-colors'
+            >
+              FAQ
+            </Link>
+            <Link
+              href='/sitemap'
               className='text-sm text-gray-300 hover:text-blue-400 transition-colors'
             >
               사이트맵

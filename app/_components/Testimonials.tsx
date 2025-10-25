@@ -190,10 +190,7 @@ export default function Testimonials() {
   ];
 
   return (
-    <section
-      id='reviews'
-      className='relative py-20 bg-gradient-to-b from-black via-gray-900 to-black overflow-hidden'
-    >
+    <section id='reviews' className='relative py-20 overflow-hidden'>
       {/* 배경 장식 */}
       <div className='absolute top-0 left-0 w-96 h-96 bg-yellow-500/10 rounded-full blur-3xl' />
       <div className='absolute bottom-0 right-0 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl' />

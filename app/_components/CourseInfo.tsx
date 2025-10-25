@@ -1,6 +1,11 @@
 // components/CourseInfoSection.tsx
 'use client';
-
+import {
+  calculateCountdown,
+  getInitialCountdown,
+  DEFAULT_TARGET_DATE,
+} from '@/lib/countdown';
+import { useState, useEffect } from 'react';
 import {
   Calendar,
   Clock,
@@ -18,6 +23,25 @@ import {
 import Link from 'next/link';
 
 export default function CourseInfo() {
+  // hydration 오류 방지를 위해 초기값은 일관된 값으로 설정
+  const [countdown, setCountdown] = useState(
+    getInitialCountdown(DEFAULT_TARGET_DATE)
+  );
+  const [isClient, setIsClient] = useState(false);
+
+  // 클라이언트에서 hydration이 완료된 후에만 실시간 업데이트 시작
+  useEffect(() => {
+    setIsClient(true);
+
+    // 첫 번째 업데이트는 즉시 실행 (정확한 시간으로)
+    setCountdown(calculateCountdown(DEFAULT_TARGET_DATE));
+
+    const timer = setInterval(() => {
+      setCountdown(calculateCountdown(DEFAULT_TARGET_DATE));
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, []);
   // 핵심 정보
   const keyInfo = [
     {
@@ -73,10 +97,7 @@ export default function CourseInfo() {
   ];
 
   return (
-    <section
-      id='info'
-      className='relative py-20 bg-gradient-to-b from-black via-gray-900 to-black overflow-hidden'
-    >
+    <section id='info' className='relative py-20 overflow-hidden'>
       {/* 배경 장식 */}
       <div className='absolute top-0 right-0 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl' />
       <div className='absolute bottom-0 left-0 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl' />
@@ -94,7 +115,7 @@ export default function CourseInfo() {
           <h2 className='text-3xl md:text-5xl font-bold text-white mb-4 leading-tight'>
             <span className='block'>Power BI 기반의</span>
             <span className='block mt-2 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400'>
-              재무빅데이터 분석사 자문관리업
+              재무빅데이터 분석사 사무관리원
             </span>
             <span className='block mt-2'>양성과정</span>
           </h2>
@@ -118,7 +139,10 @@ export default function CourseInfo() {
                       ⚠️ 마감 임박!
                     </div>
                     <div className='text-white font-bold text-lg'>
-                      모집 마감: 2024년 11월 3일 | 선착순 10명 한정
+                      모집 마감: 2025년 11월 3일{' '}
+                      <span className='text-yellow-300'>
+                        D-{countdown.displayText}
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -320,77 +344,6 @@ export default function CourseInfo() {
                   </div>
                 ))}
               </div>
-            </div>
-          </div>
-        </div>
-
-        {/* 연락처 정보 */}
-        <div className='max-w-4xl mx-auto'>
-          <div className='bg-gradient-to-r from-blue-500/20 to-purple-500/20 backdrop-blur-sm border border-blue-500/30 rounded-3xl p-10'>
-            <div className='text-center mb-8'>
-              <h3 className='text-3xl font-bold text-white mb-4'>
-                지금 바로 문의하세요
-              </h3>
-              <p className='text-gray-300 text-lg'>
-                전문 상담원이 친절하게 안내해드립니다
-              </p>
-            </div>
-
-            <div className='grid grid-cols-1 md:grid-cols-3 gap-6'>
-              <Link
-                href='tel:053-818-5677'
-                className='group bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6 hover:bg-white/20 transition-all duration-300 hover:scale-105'
-              >
-                <Phone className='w-8 h-8 text-blue-400 mx-auto mb-3' />
-                <div className='text-center'>
-                  <div className='text-sm text-gray-400 mb-1'>대표번호</div>
-                  <div className='text-white font-bold text-lg'>
-                    053-818-5677
-                  </div>
-                </div>
-              </Link>
-
-              <Link
-                href='tel:010-7186-0119'
-                className='group bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6 hover:bg-white/20 transition-all duration-300 hover:scale-105'
-              >
-                <Phone className='w-8 h-8 text-green-400 mx-auto mb-3' />
-                <div className='text-center'>
-                  <div className='text-sm text-gray-400 mb-1'>담당자</div>
-                  <div className='text-white font-bold text-lg'>
-                    010-7186-0119
-                  </div>
-                </div>
-              </Link>
-
-              <Link
-                href='mailto:abab002@naver.com'
-                className='group bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6 hover:bg-white/20 transition-all duration-300 hover:scale-105'
-              >
-                <Mail className='w-8 h-8 text-purple-400 mx-auto mb-3' />
-                <div className='text-center'>
-                  <div className='text-sm text-gray-400 mb-1'>이메일</div>
-                  <div className='text-white font-bold text-sm'>
-                    abab002@naver.com
-                  </div>
-                </div>
-              </Link>
-            </div>
-
-            <div className='mt-8 text-center'>
-              <Link
-                href='#contact'
-                onClick={e => {
-                  e.preventDefault();
-                  document
-                    .querySelector('#contact')
-                    ?.scrollIntoView({ behavior: 'smooth' });
-                }}
-                className='inline-flex items-center justify-center space-x-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white px-10 py-5 rounded-full font-bold text-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-300 hover:scale-105 hover:shadow-xl'
-              >
-                <span>온라인 상담 신청하기</span>
-                <TrendingUp className='w-5 h-5' />
-              </Link>
             </div>
           </div>
         </div>

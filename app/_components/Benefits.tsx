@@ -141,15 +141,12 @@ export default function Benefits() {
   ];
 
   return (
-    <section
-      id='benefits'
-      className='relative py-20 bg-gradient-to-b from-black via-gray-900 to-black overflow-hidden'
-    >
-      {/* 배경 장식 */}
-      <div className='absolute top-0 right-0 w-96 h-96 bg-green-500/10 rounded-full blur-3xl' />
-      <div className='absolute bottom-0 left-0 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl' />
-
+    <section id='benefits' className='relative py-20 overflow-hidden'>
       <div className='container mx-auto px-4 relative z-10'>
+        {/* 화면 왼쪽 위에서 오른쪽 아래로 가는 사선 블러 효과 */}
+        <div className='absolute top-1/6 left-0 w-full h-40 bg-blue-500/70 blur-2xl transform rotate-10 scale-200 -z-10' />
+        <div className='absolute top-1/6 left-0 w-full h-40 bg-blue-500/70 blur-2xl transform rotate-170 scale-200 -z-10' />
+
         {/* 섹션 헤더 */}
         <div className='text-center mb-16'>
           <div className='inline-flex items-center space-x-2 bg-gradient-to-r from-green-500/20 to-emerald-500/20 backdrop-blur-sm border border-green-500/30 rounded-full px-6 py-2 mb-6'>
@@ -212,7 +209,7 @@ export default function Benefits() {
         </div>
 
         {/* 메인 혜택 카드 */}
-        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-20'>
+        <div className='relative grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-20'>
           {mainBenefits.map((benefit, index) => (
             <div
               key={index}
@@ -410,10 +407,10 @@ export default function Benefits() {
             </h3>
 
             <p className='text-gray-300 mb-8 text-lg'>
-              선착순 20명에게 드리는 특별 혜택
+              선착순 10명에게 드리는 특별 혜택
               <br />
               <span className='text-green-400 font-bold'>
-                Power BI Desktop 완벽 가이드북 무료 증정
+                컴퓨터활용능력시험/빅데이터분석기사/TAT1급 응시료 지원
               </span>
             </p>
 
