@@ -81,18 +81,18 @@ export default function CourseInfo() {
     '지역취준생 등',
   ];
 
-  // 국가공인자격증
+  // 국가공인자격증 - SEO 최적화
   const nationalCertificates = [
-    { name: '전산회계 1급', detail: '(FAT 1급)' },
+    { name: '전산회계 1급', detail: '(FAT 1급) - 전산회계 학원 경산' },
     { name: '전산세무 2급', detail: '(TAT 2급)' },
     { name: '전산세무 1급', detail: '(TAT 1급)' },
   ];
 
-  // 국가자격증
+  // 국가자격증 - SEO 최적화
   const stateCertificates = [
-    { name: '컴퓨터활용능력', detail: '2급/1급' },
-    { name: '빅데이터 분석사', detail: '' },
-    { name: '경영정보시각화능력', detail: '' },
+    { name: '컴퓨터활용능력', detail: '컴활 1급 2급 - 경산 컴활 학원' },
+    { name: '빅데이터분석기사', detail: '빅데이터분석기사 학원' },
+    { name: '경영정보시각화능력', detail: 'POWER BI 전문' },
   ];
 
   return (

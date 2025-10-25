@@ -68,24 +68,26 @@ export default function Hero() {
                 : 'translate-y-10 opacity-0'
             }`}
           >
-            {/* 긴급성 메시지 */}
+            {/* 긴급성 메시지 - SEO 키워드 포함 */}
             <div className='inline-flex items-center space-x-2 bg-gradient-to-r from-red-500/20 to-orange-500/20 backdrop-blur-sm border border-red-500/30 text-white px-6 py-3 rounded-full font-semibold animate-pulse'>
               <Sparkles className='w-5 h-5 text-yellow-300' />
               <span>
-                🔥 11월 정규반 모집 중 - 선착순 10명!{' '}
+                🔥 경산 빅데이터학원 11월 정규반 모집 중 - 선착순 10명!{' '}
                 <span className='text-yellow-300'>
                   D-{isClient ? countdown.displayText : '로딩 중...'}
                 </span>
               </span>
             </div>
-            {/* 메인 헤드라인 - 큰 텍스트 */}
+            {/* 메인 헤드라인 - SEO 최적화된 키워드 포함 */}
             <h1 className='text-3xl md:text-5xl lg:text-6xl font-bold text-white leading-tight tracking-tight'>
               <span className='block mb-4'>
                 <span className='text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400'>
-                  취업스펙! 지금이 기회!!
+                  영남대 빅데이터 교육! 지금이 기회!!
                 </span>
               </span>
-              <span className='block'>재무빅데이터 분석사 양성과정</span>
+              <span className='block'>
+                경산 컴활 학원 | 대구 경산 데이터분석
+              </span>
             </h1>
 
             {/* CTA 버튼들 */}

@@ -6,14 +6,19 @@ interface StructuredDataProps {
 }
 
 export default function StructuredData({ type, data }: StructuredDataProps) {
-  // 조직 정보 구조화된 데이터
+  // 조직 정보 구조화된 데이터 - SEO 최적화
   const organizationData = {
     '@context': 'https://schema.org',
     '@type': 'EducationalOrganization',
     name: '한국산업인재육성학원',
-    alternateName: 'KIHD',
+    alternateName: [
+      'KIHD',
+      '경산 빅데이터학원',
+      '영남대 빅데이터 교육',
+      '경산 컴활 학원',
+    ],
     description:
-      '대구 최고의 회계·세무·컴퓨터학원. POWER BI 기반 재무빅데이터 분석사, 사무관리원 양성과정.',
+      '경산시 조영동 영남대 인근 빅데이터학원. 컴활 1급 2급, 빅데이터분석기사, 전산회계 자격증 취득. 영남대 빅데이터 교육, 경산 컴활 학원, 대구 경산 데이터분석 전문.',
     url: 'https://himzei.com',
     logo: 'https://himzei.com/images/logo.webp',
     image: 'https://himzei.com/images/logo.webp',
@@ -50,8 +55,9 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
       itemListElement: [
         {
           '@type': 'Course',
-          name: 'POWER BI 기반 재무빅데이터 분석사',
-          description: 'POWER BI를 활용한 재무빅데이터 분석 전문가 양성과정',
+          name: '경산 빅데이터학원 - 영남대 빅데이터 교육',
+          description:
+            'POWER BI를 활용한 재무빅데이터 분석 전문가 양성과정. 영남대 인근 최적의 위치.',
           provider: {
             '@type': 'EducationalOrganization',
             name: '한국산업인재육성학원',
@@ -59,8 +65,27 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
         },
         {
           '@type': 'Course',
-          name: '사무관리원 양성과정',
-          description: '실무 중심의 사무관리 전문가 양성과정',
+          name: '경산 컴활 학원 - 컴활 1급 2급',
+          description:
+            '컴퓨터활용능력 1급 2급 자격증 취득 과정. 영남대 학생 및 일반인 대상.',
+          provider: {
+            '@type': 'EducationalOrganization',
+            name: '한국산업인재육성학원',
+          },
+        },
+        {
+          '@type': 'Course',
+          name: '빅데이터분석기사 학원',
+          description: '빅데이터분석기사 자격증 취득을 위한 전문 교육 과정.',
+          provider: {
+            '@type': 'EducationalOrganization',
+            name: '한국산업인재육성학원',
+          },
+        },
+        {
+          '@type': 'Course',
+          name: '전산회계 학원 경산',
+          description: '전산회계 자격증 취득을 위한 실무 중심 교육 과정.',
           provider: {
             '@type': 'EducationalOrganization',
             name: '한국산업인재육성학원',
@@ -70,13 +95,18 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
     },
   };
 
-  // 강의 정보 구조화된 데이터
+  // 강의 정보 구조화된 데이터 - SEO 최적화
   const courseData = {
     '@context': 'https://schema.org',
     '@type': 'Course',
-    name: 'POWER BI 기반 재무빅데이터 분석사',
+    name: '경산 빅데이터학원 - 영남대 빅데이터 교육',
+    alternateName: [
+      '영남대 빅데이터 교육',
+      '경산 컴활 학원',
+      '대구 경산 데이터분석',
+    ],
     description:
-      'POWER BI를 활용한 재무빅데이터 분석 전문가 양성과정. 실무 중심 교육으로 취업률 95% 달성.',
+      '경산시 조영동 영남대 인근 빅데이터학원. 컴활 1급 2급, 빅데이터분석기사, 전산회계 자격증 취득. 영남대 빅데이터 교육, 경산 컴활 학원, 대구 경산 데이터분석 전문.',
     provider: {
       '@type': 'EducationalOrganization',
       name: '한국산업인재육성학원',
@@ -85,7 +115,19 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
     courseMode: 'blended',
     educationalLevel: 'beginner',
     inLanguage: 'ko',
-    teaches: ['POWER BI', '재무빅데이터 분석', '데이터 시각화', '재무분석'],
+    teaches: [
+      'POWER BI',
+      '재무빅데이터 분석',
+      '데이터 시각화',
+      '재무분석',
+      '컴활 1급',
+      '컴활 2급',
+      '빅데이터분석기사',
+      '전산회계',
+      '영남대 빅데이터 교육',
+      '경산 컴활 학원',
+      '대구 경산 데이터분석',
+    ],
     coursePrerequisites: '컴퓨터 기초 지식',
     syllabusSections: [
       {
@@ -102,6 +144,16 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
         '@type': 'Syllabus',
         name: '시각화 및 대시보드',
         description: '효과적인 데이터 시각화 및 대시보드 구축',
+      },
+      {
+        '@type': 'Syllabus',
+        name: '컴활 1급 2급',
+        description: '컴퓨터활용능력 1급 2급 자격증 취득 과정',
+      },
+      {
+        '@type': 'Syllabus',
+        name: '빅데이터분석기사',
+        description: '빅데이터분석기사 자격증 취득을 위한 전문 교육',
       },
     ],
   };

@@ -43,7 +43,7 @@ const CourseIntroSection = () => {
     {
       icon: Award,
       title: '자격증 취득',
-      description: '빅데이터분석기사, 컴활 1급 자격증까지 한번에',
+      description: '빅데이터분석기사 학원, 컴활 1급 2급 경산 컴활 학원',
       color: 'from-purple-500 to-pink-500',
     },
     {
@@ -63,8 +63,8 @@ const CourseIntroSection = () => {
   const curriculum = [
     {
       week: '1-6주차',
-      title: '컴퓨터 활용능력',
-      sub: '(2급/1급)',
+      title: '컴퓨터활용능력',
+      sub: '(컴활 1급 2급)',
       topics: [
         '엑셀 기초 및 고급 함수',
         '파워포인트 프레젠테이션',
@@ -100,7 +100,7 @@ const CourseIntroSection = () => {
     {
       week: '19-24주차',
       title: '빅데이터분석기사',
-      sub: '(PYTHON)',
+      sub: '(빅데이터분석기사 학원)',
       topics: [
         'Python & R 프로그래밍',
         'SQL 데이터베이스 분석',
