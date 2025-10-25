@@ -5,10 +5,13 @@ import { Noto_Sans_KR } from 'next/font/google';
 import Header from '@/components/layouts/Header';
 import Footer from '@/components/layouts/Footer';
 import ScrollToTop from '@/components/ui/ScrollToTop';
+import CookieConsent from './_components/CookieConsent';
 
 const notoSansKr = Noto_Sans_KR({
   weight: ['500'],
   subsets: ['latin'],
+  display: 'swap',
+  preload: true,
 });
 
 export const metadata: Metadata = {
@@ -93,8 +96,7 @@ export default function RootLayout({
       <body
         className={notoSansKr.className}
         style={{
-          backgroundImage:
-            "url('https://images.unsplash.com/photo-1621198777376-d776b7725a93?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=735')",
+          backgroundImage: "url('/images/hero-background.jpg')",
           backgroundAttachment: 'fixed', // 배경 이미지 고정
           backgroundSize: 'cover',
           backgroundPosition: 'center',
@@ -121,6 +123,9 @@ export default function RootLayout({
 
         {/* 맨 위로 이동 버튼 */}
         <ScrollToTop />
+
+        {/* 쿠키 동의 배너 */}
+        <CookieConsent />
       </body>
     </html>
   );

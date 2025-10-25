@@ -47,7 +47,7 @@ export default function CourseInfo() {
     {
       icon: Calendar,
       title: '모집기간',
-      content: '~ 2024년 11월 3일',
+      content: '~ 2025년 11월 3일',
       highlight: '선착순 10명',
       color: 'from-red-500 to-orange-500',
     },
@@ -141,7 +141,7 @@ export default function CourseInfo() {
                     <div className='text-white font-bold text-lg'>
                       모집 마감: 2025년 11월 3일{' '}
                       <span className='text-yellow-300'>
-                        D-{countdown.displayText}
+                        D-{isClient ? countdown.displayText : '로딩 중...'}
                       </span>
                     </div>
                   </div>

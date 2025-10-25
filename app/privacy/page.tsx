@@ -329,14 +329,33 @@ export default function PrivacyPage() {
               <div className='bg-white/5 rounded-lg p-6 border border-white/10'>
                 <div className='text-white/80 leading-relaxed space-y-4'>
                   <p>
-                    당사는 개인화되고 맞춤화된 서비스를 제공하기 위해 쿠키를
-                    사용할 수 있으며, 고객은 웹브라우저 설정을 통해 쿠키 저장을
-                    거부할 수 있습니다.
+                    당사는 웹사이트의 기능 향상과 사용자 경험 개선을 위해 필요한
+                    쿠키만을 사용합니다. 서드 파티 쿠키는 사용하지 않으며,
+                    개인정보를 수집하지 않는 필수 쿠키만을 사용합니다.
                   </p>
                   <div className='bg-white/10 rounded-lg p-4'>
                     <h3 className='text-lg font-bold text-white mb-2'>
-                      쿠키 설정 방법
+                      사용하는 쿠키의 종류
                     </h3>
+                    <ul className='list-disc list-inside ml-6 space-y-1 mb-4'>
+                      <li>
+                        <strong>필수 쿠키:</strong> 웹사이트 기본 기능을 위해
+                        필요한 쿠키
+                      </li>
+                      <li>
+                        <strong>성능 쿠키:</strong> 웹사이트 성능 향상을 위한
+                        쿠키
+                      </li>
+                      <li>
+                        <strong>기능 쿠키:</strong> 사용자 편의 기능을 위한 쿠키
+                      </li>
+                    </ul>
+                    <p className='text-sm text-white/70 mb-3'>
+                      ※ 서드 파티 쿠키는 사용하지 않습니다.
+                    </p>
+                    <h4 className='text-md font-bold text-white mb-2'>
+                      쿠키 설정 방법
+                    </h4>
                     <ul className='list-disc list-inside ml-6 space-y-1'>
                       <li>Internet Explorer: 도구 → 인터넷 옵션 → 개인정보</li>
                       <li>Chrome: 설정 → 고급 → 개인정보 및 보안 → 쿠키</li>

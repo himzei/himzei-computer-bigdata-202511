@@ -89,3 +89,4 @@ Vercel, Netlify 등에 배포할 때는 환경 변수를 플랫폼 설정에서 
 - `EMAIL_USER`
 - `EMAIL_PASS`
 
+

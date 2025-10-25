@@ -72,7 +72,7 @@ export default function Hero() {
               <span>
                 🔥 11월 정규반 모집 중 - 선착순 10명!{' '}
                 <span className='text-yellow-300'>
-                  D-{countdown.displayText}
+                  D-{isClient ? countdown.displayText : '로딩 중...'}
                 </span>
               </span>
             </div>
