@@ -1,9 +1,17 @@
-'use client';
-
 import { ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
+import { Metadata } from 'next';
 
-// 클라이언트 컴포넌트에서는 metadata를 export할 수 없으므로 제거
+// 메타데이터 정의
+export const metadata: Metadata = {
+  title: '사이트맵',
+  description:
+    '한국산업인재육성학원 사이트의 모든 페이지를 한눈에 확인하세요. 빅데이터 분석 과정, 커리큘럼, 수강 혜택, 수강 후기, 수강 안내, 오시는 길, 상담 신청 등 모든 정보를 제공합니다.',
+  robots: {
+    index: true,
+    follow: true,
+  },
+};
 
 export default function SitemapPage() {
   // 메인 페이지 목록 - 앵커 링크로 구성
@@ -64,27 +72,7 @@ export default function SitemapPage() {
     },
   ];
 
-  // 앵커 링크 스크롤 함수 - 클라이언트 사이드에서만 실행
-  const scrollToSection = (
-    e: React.MouseEvent<HTMLAnchorElement>,
-    href: string
-  ) => {
-    if (href.startsWith('#')) {
-      e.preventDefault();
-      // 홈페이지로 이동 후 스크롤
-      if (
-        href === '/#contact' ||
-        href === '/#course' ||
-        href === '/#curriculum' ||
-        href === '/#benefits' ||
-        href === '/#reviews' ||
-        href === '/#info' ||
-        href === '/#location'
-      ) {
-        window.location.href = href;
-      }
-    }
-  };
+  // 앵커 링크는 직접 href로 처리 (서버 컴포넌트에서는 클라이언트 사이드 스크롤 불가)
 
   return (
     <div className='min-h-screen '>
@@ -119,7 +107,6 @@ export default function SitemapPage() {
               <Link
                 key={page.href}
                 href={page.href}
-                onClick={e => scrollToSection(e, page.href)}
                 className='group bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg p-6 hover:bg-white/20 transition-all duration-300 hover:scale-105'
               >
                 <h3 className='text-lg font-semibold text-white group-hover:text-blue-300 transition-colors mb-2'>
@@ -167,7 +154,6 @@ export default function SitemapPage() {
             </Link>
             <Link
               href='/#contact'
-              onClick={e => scrollToSection(e, '/#contact')}
               className='bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors'
             >
               💬 무료 상담신청

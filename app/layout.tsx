@@ -45,6 +45,9 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://kihd.ac.kr'),
   alternates: {
     canonical: '/',
+    types: {
+      'application/rss+xml': '/api/rss',
+    },
   },
   openGraph: {
     type: 'website',
@@ -97,6 +100,13 @@ export default function RootLayout({
         <meta
           name='naver-site-verification'
           content='fd8b3c0d39bb12f3bbec626db06f0686bef6a34d'
+        />
+        <meta name='msvalidate.01' content='6E178A2F309CF6C06699A6C49170DFD4' />
+        <link
+          rel='alternate'
+          type='application/rss+xml'
+          title='한국산업인재육성학원 RSS 피드'
+          href='/api/rss'
         />
       </head>
       <body
