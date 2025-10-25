@@ -44,7 +44,7 @@ export default function NotFound() {
               </Link>
 
               <Link
-                href='/sitemap'
+                href='/site-map'
                 className='flex items-center justify-center space-x-2 bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors'
               >
                 <Map size={20} />

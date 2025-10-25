@@ -54,7 +54,7 @@ export default function Footer() {
               FAQ
             </Link>
             <Link
-              href='/sitemap'
+              href='/site-map'
               className='text-sm text-gray-300 hover:text-blue-400 transition-colors px-2 py-1 rounded hover:bg-white/5'
             >
               사이트맵
@@ -63,35 +63,29 @@ export default function Footer() {
           {/* 연락처 정보 */}
           <div className='flex flex-col gap-3 sm:gap-1'>
             {/* 모바일: 세로 배치, 데스크톱: 가로 배치 */}
-            <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-2 sm:gap-2'>
+            <div className='flex flex-col md:flex-row gap-2 md:gap-4'>
               <div className='text-sm text-gray-300'>
-                <span className='font-semibold block sm:inline'>회사명: </span>
-                <span className='block sm:inline'>한국산업인재육성학원</span>
+                <span className='font-semibold '>회사명: </span>
+                <span className=' '>한국산업인재육성학원</span>
               </div>
               <div className='text-sm text-gray-300'>
-                <span className='font-semibold block sm:inline'>대표자: </span>
-                <span className='block sm:inline'>김태성</span>
+                <span className='font-semibold'>대표자: </span>
+                <span className=' '>김태성</span>
               </div>
               <div className='text-sm text-gray-300'>
-                <span className='font-semibold block sm:inline'>TEL: </span>
-                <span className='block sm:inline'>053-818-5677</span>
+                <span className='font-semibold '>TEL: </span>
+                <span className=' '>053-818-5677</span>
               </div>
               <div className='text-sm text-gray-300'>
-                <span className='font-semibold block sm:inline'>
-                  개인정보책임자:{' '}
-                </span>
-                <span className='block sm:inline break-all'>
-                  조현일(himzei@gmail.com)
-                </span>
+                <span className='font-semibold '>개인정보책임자: </span>
+                <span className=''>조현일(himzei@gmail.com)</span>
               </div>
               <div className='text-sm text-gray-300'>
-                <span className='font-semibold block sm:inline'>
-                  사업자번호:{' '}
-                </span>
-                <span className='block sm:inline'>537-82-00231</span>
+                <span className='font-semibold '>사업자번호: </span>
+                <span className=''>537-82-00231</span>
               </div>
             </div>
-            <div className='text-center sm:text-left'>
+            <div className='text-left'>
               <p className='text-sm text-gray-300 font-semibold break-words'>
                 경북 경산시 조영길 18-18(조영동), 1층 [38541]
               </p>

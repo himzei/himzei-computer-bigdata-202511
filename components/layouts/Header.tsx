@@ -129,7 +129,11 @@ const Header = () => {
             className='lg:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors'
             aria-label='메뉴 열기'
           >
-            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            {isMobileMenuOpen ? (
+              <X size={24} className='text-white' />
+            ) : (
+              <Menu size={24} className='text-white' />
+            )}
           </button>
         </div>
 
