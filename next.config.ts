@@ -43,6 +43,7 @@ const nextConfig: NextConfig = {
               "object-src 'none'",
               "base-uri 'self'",
               "form-action 'self'",
+              "frame-src 'self' https://naver.me https://map.naver.com https://*.naver.com", // 네이버 지도 iframe 허용
               "frame-ancestors 'none'",
               'upgrade-insecure-requests',
             ].join('; '),

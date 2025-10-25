@@ -109,6 +109,19 @@ export default function RootLayout({
           title='한국산업인재육성학원 RSS 피드'
           href='/api/rss'
         />
+        {/* LCP 최적화를 위한 배경 이미지 preload */}
+        <link
+          rel='preload'
+          as='image'
+          href='/images/hero-background.webp'
+          type='image/webp'
+        />
+        <link
+          rel='preload'
+          as='image'
+          href='/images/bigdata.webp'
+          type='image/webp'
+        />
       </head>
       <body
         className={notoSansKr.className}

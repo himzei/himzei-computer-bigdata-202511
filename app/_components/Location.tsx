@@ -119,16 +119,17 @@ export default function Location() {
         <div className='max-w-6xl mx-auto mb-12'>
           <div className='bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm border border-white/20 rounded-3xl p-4 overflow-hidden'>
             <div className='relative w-full h-[400px] md:h-[500px] rounded-2xl overflow-hidden'>
-              {/* 네이버 지도 iframe */}
+              {/* 네이버 지도 iframe - 안정적인 embed URL 사용 */}
               <iframe
-                src='https://naver.me/GxLUHyKV'
+                src='https://naver.me/F16DV18Y'
                 width='100%'
                 height='100%'
                 style={{ border: 0 }}
                 allowFullScreen
                 loading='lazy'
                 referrerPolicy='no-referrer-when-downgrade'
-                title='네이버 지도'
+                title='한국산업인재육성학원 위치 - 네이버 지도'
+                sandbox='allow-scripts allow-same-origin allow-popups allow-forms'
               ></iframe>
             </div>
 

@@ -45,14 +45,16 @@ export default function Hero() {
 
   return (
     <section className='relative min-h-screen w-full flex items-center justify-center overflow-hidden'>
-      {/* 빅데이터 이미지 */}
+      {/* 빅데이터 이미지 - LCP 최적화를 위해 priority와 fetchpriority 설정 */}
       <div className='absolute top-24 right-28'>
         <Image
           className='z-10 animate-float-gentle'
           src='/images/bigdata.webp'
-          alt='bigdata'
+          alt='빅데이터 분석 교육 과정 이미지'
           width={700}
           height={700}
+          priority={true} // 지연 로드 방지
+          fetchPriority='high' // 높은 우선순위로 로딩
         />
       </div>
 
