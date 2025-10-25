@@ -16,7 +16,18 @@ export async function POST(request: NextRequest) {
   try {
     console.log('📧 이메일 전송 API 호출됨');
 
-    const body = await request.json();
+    // 요청 본문 파싱 및 검증
+    let body;
+    try {
+      body = await request.json();
+    } catch (parseError) {
+      console.error('❌ JSON 파싱 오류:', parseError);
+      return NextResponse.json(
+        { error: '잘못된 요청 형식입니다.' },
+        { status: 400 }
+      );
+    }
+
     const { name, phone, email, course, message } = body;
 
     console.log('📝 받은 데이터:', {

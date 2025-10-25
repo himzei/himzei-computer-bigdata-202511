@@ -415,7 +415,10 @@ export default function ContactForm() {
                 <button
                   type='submit'
                   disabled={isSubmitting}
-                  className='w-full bg-gradient-to-r from-purple-600 via-pink-600 to-purple-600 text-white py-5 rounded-xl font-bold text-lg hover:from-purple-700 hover:via-pink-700 hover:to-purple-700 transition-all duration-300 hover:scale-[1.02] hover:shadow-xl hover:shadow-purple-500/50 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2'
+                  className='w-full bg-gradient-to-r from-purple-600 via-pink-600 to-purple-600 text-white py-5 rounded-xl font-bold text-lg hover:from-purple-700 hover:via-pink-700 hover:to-purple-700 transition-all duration-300 hover:scale-[1.02] hover:shadow-xl hover:shadow-purple-500/50 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2 min-h-[56px]' // 접근성: 최소 56px 높이 보장
+                  aria-label={
+                    isSubmitting ? '상담 신청 중입니다' : '무료 상담 신청하기'
+                  } // 접근성: 상태에 따른 라벨 제공
                 >
                   {isSubmitting ? (
                     <>

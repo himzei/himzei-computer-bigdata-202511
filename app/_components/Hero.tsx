@@ -122,8 +122,8 @@ export default function Hero() {
       {/* 스크롤 다운 인디케이터 */}
       <button
         onClick={scrollToNextSection}
-        className='absolute bottom-10 left-1/2 transform -translate-x-1/2 z-20 text-white/60 hover:text-white animate-bounce cursor-pointer transition-colors duration-300'
-        aria-label='아래로 스크롤'
+        className='absolute bottom-10 left-1/2 transform -translate-x-1/2 z-20 text-white/60 hover:text-white animate-bounce cursor-pointer transition-colors duration-300 p-4 min-w-[44px] min-h-[44px] flex items-center justify-center' // 접근성: 최소 44px 터치 영역 보장
+        aria-label='다음 섹션으로 스크롤' // 접근성: 더 명확한 라벨 제공
       >
         <div className='flex flex-col items-center space-y-2'>
           <span className='text-sm tracking-widest'>SCROLL</span>

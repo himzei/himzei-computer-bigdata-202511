@@ -85,7 +85,8 @@ export const metadata: Metadata = {
     },
   },
   verification: {
-    google: 'your-google-verification-code', // Google Search Console에서 발급받은 코드로 교체 필요
+    google:
+      process.env.GOOGLE_VERIFICATION_CODE || 'your-google-verification-code', // 환경변수에서 가져오거나 기본값 사용
   },
 };
 

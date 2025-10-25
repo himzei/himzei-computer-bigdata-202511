@@ -56,13 +56,15 @@ export default function CookieConsent() {
           <div className='flex flex-col sm:flex-row gap-2 w-full md:w-auto'>
             <button
               onClick={handleDecline}
-              className='px-4 py-2 text-sm font-medium text-gray-600 hover:text-gray-800 transition-colors'
+              className='px-4 py-3 text-sm font-medium text-gray-600 hover:text-gray-800 transition-colors min-h-[44px] rounded-lg' // 접근성: 최소 44px 높이와 둥근 모서리 추가
+              aria-label='쿠키 사용 거부' // 접근성: 명확한 라벨 제공
             >
               거부
             </button>
             <button
               onClick={handleAccept}
-              className='px-6 py-2 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700 transition-colors'
+              className='px-6 py-3 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700 transition-colors min-h-[44px]' // 접근성: 최소 44px 높이 보장
+              aria-label='쿠키 사용 동의' // 접근성: 명확한 라벨 제공
             >
               동의
             </button>

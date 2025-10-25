@@ -140,7 +140,11 @@ export default function FAQContent() {
                   {/* 질문 */}
                   <button
                     onClick={() => toggleItem(categoryIndex, questionIndex)}
-                    className='w-full px-6 py-4 text-left flex items-center justify-between hover:bg-white/20 transition-colors'
+                    className='w-full px-6 py-4 text-left flex items-center justify-between hover:bg-white/20 transition-colors min-h-[56px]' // 접근성: 최소 56px 높이 보장
+                    aria-label={`${item.question} ${
+                      isOpen ? '접기' : '펼치기'
+                    }`} // 접근성: 질문과 상태를 포함한 명확한 라벨
+                    aria-expanded={isOpen} // 접근성: 펼침/접힘 상태 표시
                   >
                     <h3 className='text-lg font-semibold text-white pr-4'>
                       {item.question}

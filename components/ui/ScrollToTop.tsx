@@ -39,8 +39,8 @@ export default function ScrollToTop() {
       {isVisible && (
         <button
           onClick={scrollToTop}
-          className='fixed bottom-6 right-6 sm:bottom-8 sm:right-8 z-50 bg-linear-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white p-2 sm:p-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out transform hover:scale-110 group'
-          aria-label='맨 위로 이동'
+          className='fixed bottom-6 right-6 sm:bottom-8 sm:right-8 z-50 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white p-3 sm:p-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out transform hover:scale-110 group min-w-[48px] min-h-[48px] flex items-center justify-center' // 접근성: 최소 48px 터치 영역 보장 및 gradient 수정
+          aria-label='페이지 맨 위로 이동' // 접근성: 더 명확한 라벨 제공
           title='맨 위로 이동'
         >
           <ChevronUp

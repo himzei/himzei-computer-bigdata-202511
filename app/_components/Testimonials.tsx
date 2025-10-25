@@ -356,16 +356,16 @@ export default function Testimonials() {
           {/* 네비게이션 버튼 */}
           <button
             onClick={prevSlide}
-            className='absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 lg:-translate-x-16 w-12 h-12 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-white hover:bg-white/20 transition-all duration-300 hover:scale-110'
-            aria-label='이전 후기'
+            className='absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 lg:-translate-x-16 w-12 h-12 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-white hover:bg-white/20 transition-all duration-300 hover:scale-110 min-w-[48px] min-h-[48px]' // 접근성: 최소 48px 터치 영역 보장
+            aria-label='이전 수강후기 보기' // 접근성: 더 명확한 라벨 제공
           >
             <ChevronLeft className='w-6 h-6' />
           </button>
 
           <button
             onClick={nextSlide}
-            className='absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 lg:translate-x-16 w-12 h-12 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-white hover:bg-white/20 transition-all duration-300 hover:scale-110'
-            aria-label='다음 후기'
+            className='absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 lg:translate-x-16 w-12 h-12 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-white hover:bg-white/20 transition-all duration-300 hover:scale-110 min-w-[48px] min-h-[48px]' // 접근성: 최소 48px 터치 영역 보장
+            aria-label='다음 수강후기 보기' // 접근성: 더 명확한 라벨 제공
           >
             <ChevronRight className='w-6 h-6' />
           </button>
@@ -377,12 +377,13 @@ export default function Testimonials() {
             <button
               key={index}
               onClick={() => goToSlide(index)}
-              className={`transition-all duration-300 rounded-full ${
+              className={`transition-all duration-300 rounded-full min-w-[44px] min-h-[44px] flex items-center justify-center ${
                 index === currentIndex
                   ? 'w-8 h-2 bg-gradient-to-r from-yellow-500 to-orange-500'
                   : 'w-2 h-2 bg-white/30 hover:bg-white/50'
-              }`}
-              aria-label={`${index + 1}번 후기로 이동`}
+              }`} // 접근성: 최소 44px 터치 영역 보장
+              aria-label={`${index + 1}번째 수강후기로 이동`} // 접근성: 더 명확한 라벨 제공
+              aria-current={index === currentIndex ? 'true' : 'false'} // 접근성: 현재 선택된 항목 표시
             />
           ))}
         </div>

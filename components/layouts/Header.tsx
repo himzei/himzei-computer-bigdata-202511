@@ -126,8 +126,9 @@ const Header = () => {
           {/* 모바일 메뉴 버튼 */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className='lg:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors'
-            aria-label='메뉴 열기'
+            className='lg:hidden p-3 rounded-lg hover:bg-gray-100 transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center' // 접근성: 최소 44px 터치 영역 보장
+            aria-label={isMobileMenuOpen ? '메뉴 닫기' : '메뉴 열기'} // 접근성: 상태에 따른 라벨 제공
+            aria-expanded={isMobileMenuOpen} // 접근성: 메뉴 상태 표시
           >
             {isMobileMenuOpen ? (
               <X size={24} className='text-white' />
