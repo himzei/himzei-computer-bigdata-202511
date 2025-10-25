@@ -12,7 +12,7 @@ export default function manifest(): MetadataRoute.Manifest {
     theme_color: '#3b82f6',
     icons: [
       {
-        src: '/images/logo.png',
+        src: '/images/logo.webp',
         sizes: 'any',
         type: 'image/png',
       },
@@ -22,5 +22,3 @@ export default function manifest(): MetadataRoute.Manifest {
     orientation: 'portrait',
   };
 }
-
-

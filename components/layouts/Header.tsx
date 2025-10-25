@@ -57,7 +57,7 @@ const Header = () => {
           {/* 로고 */}
           <Link href='/' className='flex items-center space-x-1'>
             <Image
-              src='/images/logo.png'
+              src='/images/logo.webp'
               alt='한국산업인재육성학원'
               width={60}
               height={60}

@@ -56,7 +56,7 @@ export const metadata: Metadata = {
       '대구 최고의 회계·세무·컴퓨터학원. POWER BI 기반 재무빅데이터 분석사, 사무관리원 양성과정. 실무 중심 교육으로 취업률 95% 달성.',
     images: [
       {
-        url: '/images/logo.png',
+        url: '/images/logo.webp',
         width: 1200,
         height: 630,
         alt: '한국산업인재육성학원 로고',
@@ -68,7 +68,7 @@ export const metadata: Metadata = {
     title: '한국산업인재육성학원 | 대구 회계·세무·컴퓨터학원',
     description:
       '대구 최고의 회계·세무·컴퓨터학원. POWER BI 기반 재무빅데이터 분석사, 사무관리원 양성과정.',
-    images: ['/images/logo.png'],
+    images: ['/images/logo.webp'],
   },
   robots: {
     index: true,
@@ -93,10 +93,17 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='ko' className='scroll-smooth' data-scroll-behavior='smooth'>
+      <head>
+        <meta
+          name='naver-site-verification'
+          content='fd8b3c0d39bb12f3bbec626db06f0686bef6a34d'
+        />
+      </head>
       <body
         className={notoSansKr.className}
         style={{
-          backgroundImage: "url('/images/hero-background.jpg')",
+          backgroundImage:
+            "url('/images/hero-background.webp'), url('/images/hero-background.jpg')",
           backgroundAttachment: 'fixed', // 배경 이미지 고정
           backgroundSize: 'cover',
           backgroundPosition: 'center',

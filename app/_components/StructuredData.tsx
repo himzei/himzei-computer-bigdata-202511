@@ -15,8 +15,8 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
     description:
       '대구 최고의 회계·세무·컴퓨터학원. POWER BI 기반 재무빅데이터 분석사, 사무관리원 양성과정.',
     url: 'https://kihd.ac.kr',
-    logo: 'https://kihd.ac.kr/images/logo.png',
-    image: 'https://kihd.ac.kr/images/logo.png',
+    logo: 'https://kihd.ac.kr/images/logo.webp',
+    image: 'https://kihd.ac.kr/images/logo.webp',
     telephone: '053-818-5677',
     email: 'himzei@gmail.com',
     address: {

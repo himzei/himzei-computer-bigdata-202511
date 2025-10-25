@@ -11,7 +11,7 @@ export default function Footer() {
           <div className='flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-6'>
             <div className='flex items-center space-x-3'>
               <Image
-                src='/images/logo.png'
+                src='/images/logo.webp'
                 alt='한국산업인재육성학원'
                 width={40}
                 height={40}

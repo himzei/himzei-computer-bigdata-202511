@@ -49,7 +49,7 @@ export default function Hero() {
       <div className='absolute top-24 right-28'>
         <Image
           className='z-10 animate-float-gentle'
-          src='/images/bigdata.png'
+          src='/images/bigdata.webp'
           alt='bigdata'
           width={700}
           height={700}
