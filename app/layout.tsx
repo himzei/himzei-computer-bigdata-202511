@@ -47,6 +47,12 @@ export const metadata: Metadata = {
     '경산 학원',
     '한국산업인재육성학원',
   ],
+  icons: {
+    icon: [
+      { url: '/favicon.ico' },
+      { url: '/icon.png', sizes: '192x192', type: 'image/png' },
+    ],
+  },
   authors: [{ name: '한국산업인재육성학원' }],
   creator: '한국산업인재육성학원',
   publisher: '한국산업인재육성학원',
