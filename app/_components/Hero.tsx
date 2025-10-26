@@ -45,16 +45,19 @@ export default function Hero() {
 
   return (
     <section className='relative min-h-screen w-full flex items-center justify-center overflow-hidden'>
-      {/* 빅데이터 이미지 - LCP 최적화를 위해 priority와 fetchpriority 설정 */}
-      <div className='absolute top-24 right-28'>
+      {/* 빅데이터 이미지 - Next.js Image 컴포넌트로 최적화 */}
+      <div className='absolute top-24 right-28 z-10'>
         <Image
-          className='z-10 animate-float-gentle'
+          className='animate-float-gentle'
           src='/images/bigdata.webp'
           alt='빅데이터 분석 교육 과정 이미지'
           width={700}
           height={700}
-          priority={true} // 지연 로드 방지
+          priority={true} // LCP 최적화를 위해 우선 로딩
           fetchPriority='high' // 높은 우선순위로 로딩
+          quality={90} // 고품질 유지 (메인 이미지이므로)
+          placeholder='blur' // 로딩 중 블러 효과
+          blurDataURL='data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k=' // 기본 블러 이미지
         />
       </div>
 
