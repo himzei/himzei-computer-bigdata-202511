@@ -104,6 +104,19 @@ export const metadata: Metadata = {
   },
 };
 
+const siteNameLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  '@id': 'https://www.himzei.com/#org',
+  name: '한국산업인재육성학원',
+  url: 'https://www.himzei.com/',
+  logo: {
+    '@type': 'ImageObject',
+    url: 'https://www.himzei.com/favicon-96x96.png',
+  },
+  sameAs: ['http://www.kihd.co.kr'],
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -122,6 +135,12 @@ export default function RootLayout({
           type='application/rss+xml'
           title='한국산업인재육성학원 RSS 피드'
           href='/api/rss'
+        />
+        <script
+          id='ld-json-website'
+          type='application/ld+json'
+          // 꼭 JSON.stringify로 직렬화
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(siteNameLd) }}
         />
       </head>
       <body className={notoSansKr.className}>
